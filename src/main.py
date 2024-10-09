@@ -21,7 +21,7 @@ def print_current_date_time(sheets):
     formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
     statement = "Scanning @ "+ formatted_time
     time_values = [[statement]]
-    send_data_to_sheets(time_values ,  sheets ,id = SPREADSHEET_ID)
+    send_data_to_sheets(time_values ,  sheets ,id = SPREADSHEET1_ID)
     print("time printed to sheet")
 
 

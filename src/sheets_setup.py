@@ -22,7 +22,7 @@ def send_data_to_sheets(values, sheets , id ):
 
 def read_group_names_from_sheets(sheets):
     sheet_range = 'Sheet2!A:D'
-    result = sheets.values().get(spreadsheetId=SPREADSHEET_ID, range=sheet_range).execute()
+    result = sheets.values().get(spreadsheetId=SPREADSHEET1_ID, range=sheet_range).execute()
     values = result.get('values', [])
     group_names = [value[0] for value in values[1:] if value] if values else []
     return group_names
@@ -58,7 +58,7 @@ def clear_sheet_except_header(sheets, spreadsheet_id):
 
 def get_urls_and_statuses_from_sheet(sheets):
     result = sheets.values().get(
-        spreadsheetId=SPREADSHEET_ID,
+        spreadsheetId=SPREADSHEET1_ID,
         range='Sheet1!H:I'  # Link column is H, Status column is I
     ).execute()
     values = result.get('values', [])
@@ -74,14 +74,14 @@ def update_status(row_index, status , sheets):
         'values': [[status]]
     }
     result = sheets.values().update(
-        spreadsheetId=SPREADSHEET_ID, range=range_name,
+        spreadsheetId=SPREADSHEET1_ID, range=range_name,
         valueInputOption='USER_ENTERED', body=body).execute()
     print(f"Status updated for row {row_index}: {status}")
 
 
 def save_to_google_sheets(data, sheets):
     range_name = 'Sheet3!A1:G1'  # Start from A1 in Sheet3
-    sheet = sheets.get(spreadsheetId=SPREADSHEET_ID, range=range_name).execute()
+    sheet = sheets.get(spreadsheetId=SPREADSHEET1_ID, range=range_name).execute()
     header_exists = len(sheet.get('values', [])) > 0
     headers = ["Name", "Job Title", "Profile Link", "Info", "More info", "OpenAI", "Original URL"]
     values = []
@@ -90,7 +90,7 @@ def save_to_google_sheets(data, sheets):
     values.append(list(data.values()))
     body = {'values': values}
     result = sheets.values().append(
-        spreadsheetId=SPREADSHEET_ID, range=range_name,
+        spreadsheetId=SPREADSHEET1_ID, range=range_name,
         valueInputOption='USER_ENTERED', insertDataOption='INSERT_ROWS', body=body).execute()
     print(f"{result.get('updates').get('updatedCells')} cells appended.")
 

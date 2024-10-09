@@ -1,6 +1,7 @@
 # Ignore config.json file containing sensitive information
 config.json
 config.py
+automations_config.json
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

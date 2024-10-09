@@ -2,7 +2,7 @@ from config import *
 from driver_setup import *
 from sheets_setup import * 
 import anthropic
-client = anthropic.Anthropic(api_key=API_KEY)
+client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
 
 def check_login_status(driver):
@@ -199,7 +199,7 @@ def extract_and_process(sheets):
                 if final_data[0].lower() == "yes":
                     append_data = [data[0] ,data[1] , data[2] , data[3] , final_data[1], f"' {final_data[2]}", final_data[3], final_data[4] ]
                     send_data = [append_data]
-                    send_data_to_sheets(send_data , sheets , SPREADSHEET_ID)
+                    send_data_to_sheets(send_data , sheets , SPREADSHEET1_ID)
             except Exception as e: 
                 print(f'Processing failed for {data}')
         print("Data processed and added successfully.")
