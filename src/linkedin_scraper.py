@@ -132,12 +132,12 @@ def main():
         print("Starting LinkedIn scraper script")
         # check login status
         driver.get('https://www.linkedin.com/login') 
-        random_sleep()
+        random_long_sleep()
         if(check_linkedin_login_status(driver)):
             print("Already Logged in")
         else : 
             linkedin_login(driver)
-        random_sleep()
+        random_long_sleep()
         urls_and_statuses = get_urls_and_statuses_from_sheet(sheets)
         if not urls_and_statuses:
             print("No URLs found in the spreadsheet. Exiting.")

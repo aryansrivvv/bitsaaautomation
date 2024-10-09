@@ -47,3 +47,7 @@ def initialise_driver():
 def random_sleep():
     sleep_time = random.uniform(10, 30)
     time.sleep(sleep_time)
+
+def random_long_sleep():
+    sleep_time = random.uniform(45, 90)
+    time.sleep(sleep_time) 
